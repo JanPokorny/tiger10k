@@ -1,0 +1,16 @@
+{
+  "name": "WhenTheTigerCame",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./docs/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jan Pokorný",
+  "license": "All Rights Reserved",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-htmlmin": "^2.0.0"
+  }
+}

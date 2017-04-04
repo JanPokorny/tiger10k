@@ -1,0 +1,234 @@
+init
+Can you get the treasure? [Begin.|start]
+
+init !start
+[<small>about this game</small>|about]
+
+about !start
+This is a browser choose-your-own-adventure game in pure HTML and CSS, no JavaScript at all! It was automatically generated from a description file. I will publish the generator once I un-spaghetti it, so you can make your own no-JS games too.
+
+about !start
+The story is heavily inspired by a live action adventure game I once played and really enjoyed. Made by Jan Pokorný for the 10k Apart Challenge by Microsoft.
+
+##### INVENTORY #####
+
+coin-silver !the-end !chest-open
+You have a silver coin.
+
+coin-gold !the-end !chest-open
+You have a golden coin.
+
+meat !coin-silver !the-end !chest-open
+You have some meat.
+
+carrots !coin-silver !the-end !chest-open
+You have some carrots.
+
+apple !coin-silver !the-end !chest-open
+You have an apple.
+
+key-small !the-end !chest-open
+You have a small silver key.
+
+key-big !the-end !chest-open
+You have a big golden key.
+
+##### MAIN GAME #####
+
+# Central hub
+
+start
+You are on a small town square.
+You can see a large nobleman's house. [You can go and knock on the door.|knock]
+Next to the house, there's a cage with a tiger in it. [Go take a look.|cage]
+A wandering salesman is going around the square, selling his products. [Talk to him.|salesman]
+And what about that [strange woman|woman]?
+
+# Noble's house
+
+knock !meat !carrots !apple
+Oh, look! There's a [silver coin|coin-silver] on the ground.
+
+knock !guard-gone
+There's a guard standing nearby, looking at you mistrustfully. You approach the house and knock on the door. A nobleman comes outside. "Can I help you with something?" he asks. You notice a key, hanging on a string around his neck.
+[Ask about the treasure.|ask-treasure]
+[Ask about the tiger.|ask-tiger]
+[Push him away and go inside.|not-good-idea]
+[Say goodbye and go away.|<knock]
+
+knock guard-gone
+There is no guard now. He is somewhere else, having fun. You can [go inside the house|inside-bad-idea]. Or [go back|<knock].
+
+
+
+inside-bad-idea
+The nobleman sees you and starts yelling. "Help! Intruder!" In a moment, a guard appears from somewhere (he got dressed pretty quickly) and attacks you. [The end.|the-end]
+
+ask-treasure
+"Oh, my treasure? Don't worry about it, it's well guarded. And there is no one crazy enough to get the key."
+[Ok.|<ask-treasure]
+
+ask-tiger
+"You've seen my tiger? Be aware, it's very dangerous. Don't try to pet him, he can be very agressive."
+[Ok.|<ask-tiger]
+
+not-good-idea
+The guard immediately attacks you. [The end.|the-end]
+
+
+# Tiger's cage
+
+cage !shed !cage-open
+A massive tiger is watching every your step. A sign on the cage door reads "Siberian tiger: beware, its life is more valuable than yours!" There's a heavy lock on the cage door, with a rather small keyhole.
+A simple toolshed is nearby.
+
+cage key-small
+[Open the cage door.|cage-open]
+
+cage meat !cage-open
+The tiger is looking at the piece of meat hungrily. Should you [feed it to the tiger|meat-tiger]? Or [leave it on the ground|meat-ground]?
+
+cage meat-tiger !cage-open
+The tiger is eating a piece of meat.
+
+cage meat-ground !cage-open
+A piece of meat is lying on the ground.
+
+cage !cage-open
+[Go to the shed.|shed]
+[Go back.|<cage]
+
+cage-open !meat-ground
+The tiger jumps at you. [The end.|the-end]
+
+cage-open meat-ground
+The tiger is rushing to get the meat. Run [to the town square|eaten-by-tiger] or [to the shed|shed]?
+
+eaten-by-tiger !the-end
+After devouring the piece of meat, the tiger runs after you to the town square. The travelling salesman didn't notice the tiger fast enough, and you hear him behind you screaming in agony. You don't turn around, just run.
+
+eaten-by-tiger
+Suddenly, you trip, hit your head on the pavement and black out. [The end.|the-end]
+
+# Toolshed
+
+shed !cage-open
+Inside of the toolshed is pretty boring.
+
+shed !noble-gone !guard-gone
+Oh, look! There's a [coin|coin-gold] on the ground.
+
+shed !cage-open
+[Go back.|<shed]
+
+shed cage-open
+Here you are safe from the tiger. Maybe. You hear scary sounds outside.
+Suddenly, the sounds stop. [Go take a look outside?|after-tiger]
+
+
+# Tiger aftermath
+
+after-tiger !house
+Oh, look! There's a [key|key-big] on the ground. It must've fallen off the tiger's neck.
+
+after-tiger
+You see the aftermath of the tiger attack. The tiger is dead now: he was killed by the nobleman's guard. The nobleman is wounded -- the guard is next to him, helping him. You can't see anybody else.
+[Approach the guard.|guard-angry]
+[Go to the nobleman's house.|house]
+
+guard-angry
+The guard looks at you and yells. "You! You've let the tiger free!" He attacks you. [The end.|the-end]
+
+house !chest-open
+You go to the nobleman's house. You open the door and go inside. No one is there to stop you. And finally: you see the chest.
+It has a huge keyhole on its lid.
+
+house key-big
+You have the correct key: you can [open the chest|chest-open]!
+
+house !chest-open
+[Go back.|<house]
+
+
+# Salesman
+
+salesman !coin-silver
+The salesman can sell you some groceries (cheese, meat, vegetables and so on) for a price of one silver coin each. Sadly, you have none. [Go back.|<salesman]
+
+salesman coin-silver !meat !carrots !apple
+The salesman can sell you something for a price of one silver coin.
+
+salesman coin-silver !meat !carrots !apple
+[Buy meat.|meat]
+
+salesman coin-silver meat !carrots !apple
+You can [buy meat for one silver coin|<coin-silver]. [Go back.|<meat]
+
+salesman coin-silver !meat !carrots !apple
+[Buy carrots.|carrots]
+
+salesman coin-silver carrots !meat !apple
+You can [buy carrots for one silver coin|<coin-silver]. [Go back.|<carrots]
+
+salesman coin-silver !meat !carrots !apple
+[Buy an apple.|apple]
+
+salesman coin-silver apple !meat !carrots
+You can [buy apple for one silver coin|<coin-silver]. [Go back.|<apple]
+
+salesman !meat !carrots !apple
+[Go back.|<salesman]
+
+
+# Strange woman
+
+woman !coin-gold !guard-gone !noble-gone
+The woman doesn't look very interested in you.
+[Ask about weather.|ask-weather]
+[Ask about her job.|ask-job]
+[Go back.|<woman]
+
+ask-weather
+"Oh, the weather? It is too sunny today. I don't like sun much. I like other shiny things."
+[Ok.|<ask-weather]
+
+ask-job
+"My job? Let's say I can help men. Rich men. Not men like you."
+[Ok.|<ask-job]
+
+woman coin-gold !guard-gone !noble-gone
+The woman sees your gold and is willing to help you.
+[Distract the guard.|guard-gone]
+[Distract the nobleman.|noble-gone]
+[Go back.|<woman]
+
+woman coin-gold guard-gone
+Give woman the [gold coin|<coin-gold], and she'll distract the guard. Or [go back|<guard-gone].
+
+woman coin-gold noble-gone
+Give woman the [gold coin|<coin-gold], and she'll distract the noble. Or [go back|<noble-gone].
+
+woman !coin-gold noble-gone
+The woman went away, and returned after a while. The nobleman liked her services.
+
+woman !coin-gold noble-gone
+She managed to get his [key|key-small].
+
+woman !coin-gold noble-gone
+[Return back.|<woman]
+
+woman !coin-gold guard-gone
+The woman went away. [Return back.|<woman]
+
+
+##### GAME END ######
+
+chest-open
+You open the chest. It is empty, except for a small polaroid photograph of a little boy hugging a baby tiger. They both seem very happy.
+
+chest-open
+You won.
+
+the-end
+The game has ended for you. Refresh the page and try again!
+
